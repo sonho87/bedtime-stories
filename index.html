@@ -25,21 +25,25 @@
   .moon{position:fixed;top:4%;right:6%;font-size:3.5rem;filter:drop-shadow(0 0 20px rgba(245,200,66,0.5));animation:float 6s ease-in-out infinite;z-index:1;pointer-events:none;}
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 
-  /* ── SETUP SCREEN ── */
+  /* SETUP */
   #setup{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
   .setup-icon{font-size:4rem;margin-bottom:1rem;animation:float 4s ease-in-out infinite;}
   .setup-title{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;background:linear-gradient(135deg,#f5c842,#ff9de2,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
-  .setup-sub{color:var(--muted);font-size:0.95rem;margin-bottom:2rem;max-width:400px;line-height:1.6;}
-  .setup-card{background:var(--card);border:1px solid rgba(168,180,255,0.15);border-radius:20px;padding:2rem;max-width:440px;width:100%;}
-  .setup-label{font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;text-align:left;}
+  .setup-sub{color:var(--muted);font-size:0.92rem;margin-bottom:2rem;max-width:420px;line-height:1.7;}
+  .setup-card{background:var(--card);border:1px solid rgba(168,180,255,0.15);border-radius:20px;padding:2rem;max-width:450px;width:100%;}
+  .setup-label{font-size:0.85rem;color:var(--soft);margin-bottom:0.5rem;text-align:left;font-weight:700;}
+  .setup-steps{text-align:left;margin-bottom:1.2rem;background:rgba(0,0,0,0.2);border-radius:12px;padding:1rem 1.2rem;}
+  .setup-steps li{font-size:0.82rem;color:var(--muted);line-height:1.8;list-style:none;padding-left:0;}
+  .setup-steps li::before{content:attr(data-n) " ";color:var(--gold);font-weight:900;}
+  .setup-steps a{color:var(--soft);}
   .setup-input{width:100%;background:#0b0f2e;border:2px solid rgba(168,180,255,0.2);border-radius:12px;padding:0.9rem 1rem;color:var(--text);font-size:0.95rem;font-family:'Nunito',sans-serif;outline:none;transition:border 0.2s;margin-bottom:1rem;}
   .setup-input:focus{border-color:var(--gold);}
   .setup-btn{width:100%;background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:12px;padding:1rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:900;color:#0b0f2e;cursor:pointer;transition:transform 0.2s;}
   .setup-btn:hover{transform:scale(1.02);}
-  .setup-note{font-size:0.75rem;color:var(--muted);margin-top:1rem;line-height:1.5;}
-  .setup-note a{color:var(--soft);}
+  .setup-note{font-size:0.75rem;color:var(--muted);margin-top:0.8rem;line-height:1.5;}
+  .err-msg{color:#ff9999;font-size:0.82rem;margin-bottom:0.8rem;display:none;}
 
-  /* ── HOME ── */
+  /* HOME */
   #home{display:none;position:relative;z-index:2;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
   .home-owl{font-size:5rem;margin-bottom:1rem;animation:float 5s ease-in-out infinite;}
   .home-title{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#f5c842,#ff9de2,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:0.4rem;}
@@ -53,7 +57,7 @@
   .badge{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:0.3rem 0.9rem;font-size:0.8rem;color:var(--muted);}
   .reset-key{margin-top:1.5rem;font-size:0.78rem;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif;}
 
-  /* ── LOADING ── */
+  /* LOADING */
   #loading{display:none;position:fixed;inset:0;z-index:20;background:var(--night);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;}
   .anim-owl{width:130px;height:130px;margin-bottom:1.5rem;}
   .books-row{display:flex;gap:1rem;margin-bottom:1.5rem;}
@@ -70,7 +74,7 @@
   .sparkle{position:absolute;font-size:1.2rem;animation:spk 3s ease-in-out infinite;}
   @keyframes spk{0%{opacity:0;transform:scale(0) translateY(0);}30%{opacity:1;transform:scale(1) translateY(-20px);}100%{opacity:0;transform:scale(0.5) translateY(-60px);}}
 
-  /* ── STORY ── */
+  /* STORY */
   #story-screen{display:none;position:relative;z-index:2;min-height:100vh;padding:1.5rem 1rem 5rem;}
   .story-header{text-align:center;margin-bottom:1.5rem;}
   .genre-tag{display:inline-block;background:linear-gradient(135deg,#f5c842,#ff9de2);color:#0b0f2e;font-weight:900;font-size:0.85rem;padding:0.3rem 1rem;border-radius:999px;margin-bottom:0.8rem;letter-spacing:0.05em;text-transform:uppercase;}
@@ -81,7 +85,7 @@
   .scene-wrap{margin:0.8rem 0 1.4rem;border-radius:16px;overflow:hidden;border:2px solid rgba(168,180,255,0.2);box-shadow:0 4px 30px rgba(0,0,0,0.5);background:#0d1235;min-height:160px;display:flex;align-items:center;justify-content:center;position:relative;}
   .scene-wrap img{width:100%;display:block;border-radius:14px;opacity:0;transition:opacity 0.6s;}
   .scene-wrap img.loaded{opacity:1;}
-  .scene-ph{display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:2rem;color:var(--muted);font-size:0.85rem;}
+  .scene-ph{display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:2rem;color:var(--muted);font-size:0.85rem;text-align:center;}
   .scene-ph .pa{font-size:2rem;animation:float 2s ease-in-out infinite;}
   .story-footer{max-width:700px;margin:1.5rem auto 0;display:flex;flex-direction:column;align-items:center;gap:1rem;}
   .new-story-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:999px;padding:1rem 2.5rem;cursor:pointer;font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:#0b0f2e;transition:transform 0.2s;}
@@ -99,15 +103,19 @@
 <div id="setup">
   <div class="setup-icon">🦉</div>
   <h1 class="setup-title">Tonight's Story</h1>
-  <p class="setup-sub">One-time setup — enter your Anthropic API key to unlock unlimited bedtime stories!</p>
+  <p class="setup-sub">One-time setup needed. Get a <strong style="color:var(--gold)">free</strong> Google Gemini API key — takes 2 minutes.</p>
   <div class="setup-card">
-    <div class="setup-label">🔑 Your Anthropic API Key</div>
-    <input class="setup-input" type="password" id="api-key-input" placeholder="sk-ant-api03-..." />
-    <button class="setup-btn" onclick="saveKey()">✨ Start Reading Stories!</button>
-    <div class="setup-note">
-      Your key is saved only on this device — never sent anywhere except Anthropic.<br/>
-      Get a free key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
+    <div class="setup-steps">
+      <li data-n="1">Go to <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a></li>
+      <li data-n="2">Sign in with your Google account</li>
+      <li data-n="3">Click <strong style="color:var(--gold)">"Create API Key"</strong></li>
+      <li data-n="4">Copy and paste it below 👇</li>
     </div>
+    <div class="setup-label">🔑 Paste your Gemini API Key</div>
+    <div class="err-msg" id="err-msg">❌ Invalid key — please check and try again</div>
+    <input class="setup-input" type="password" id="api-key-input" placeholder="AIza..."/>
+    <button class="setup-btn" onclick="saveKey()">✨ Start Reading Stories!</button>
+    <div class="setup-note">Key is saved only on this device. Never shared with anyone.</div>
   </div>
 </div>
 
@@ -136,8 +144,7 @@
   <svg class="anim-owl" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
     <style>
       .ob{animation:owl-bob 1.2s ease-in-out infinite;}
-      .oel{animation:owl-blink 3s ease-in-out infinite;}
-      .oer{animation:owl-blink 3s ease-in-out infinite;}
+      .oel,.oer{animation:owl-blink 3s ease-in-out infinite;}
       .wl{transform-origin:60px 80px;animation:wing-l 1.2s ease-in-out infinite;}
       .wr{transform-origin:80px 80px;animation:wing-r 1.2s ease-in-out infinite;}
       .os{animation:star-spin 2s linear infinite;transform-origin:70px 70px;}
@@ -163,12 +170,9 @@
       <rect x="52" y="104" width="36" height="26" rx="3" fill="#ff9de2"/>
       <line x1="70" y1="104" x2="70" y2="130" stroke="#c06090" stroke-width="2"/>
       <line x1="55" y1="112" x2="67" y2="112" stroke="#c06090" stroke-width="1.5"/>
-      <line x1="55" y1="118" x2="67" y2="118" stroke="#c06090" stroke-width="1.5"/>
       <line x1="73" y1="112" x2="85" y2="112" stroke="#c06090" stroke-width="1.5"/>
-      <line x1="73" y1="118" x2="85" y2="118" stroke="#c06090" stroke-width="1.5"/>
     </g>
-    <g class="os"><circle cx="110" cy="30" r="5" fill="#f5c842" opacity="0.9"/>
-    <polygon points="110,24 111.5,28.5 116,28.5 112.5,31.5 113.8,36 110,33 106.2,36 107.5,31.5 104,28.5 108.5,28.5" fill="#f5c842"/></g>
+    <g class="os"><polygon points="110,24 111.5,28.5 116,28.5 112.5,31.5 113.8,36 110,33 106.2,36 107.5,31.5 104,28.5 108.5,28.5" fill="#f5c842"/></g>
   </svg>
   <div class="books-row"><div class="book">📚</div><div class="book">✨</div><div class="book">🌙</div></div>
   <div class="loading-title" id="loading-title">Writing your story…</div>
@@ -193,11 +197,11 @@
 
 <script>
 const GENRES=[
-  {label:"Action",         emoji:"⚔️", sceneClass:"",imgSeeds:[10,237,453,600,812],subjects:["brave hero facing a dragon","epic battle on a castle bridge","hero celebrating victory at sunset"]},
-  {label:"Fantasy & Magic",emoji:"🧙", sceneClass:"",imgSeeds:[20,119,338,501,743],subjects:["wizard casting spells in enchanted forest","fairy village inside a glowing mushroom","young witch flying over moonlit castle"]},
-  {label:"Adventure",      emoji:"🗺️",sceneClass:"",imgSeeds:[30,154,402,620,890],subjects:["explorer finding hidden waterfall in jungle","children discovering treasure on island","hot air balloon over ancient ruins"]},
-  {label:"Thriller",       emoji:"🔦", sceneClass:"",imgSeeds:[40,188,320,540,760],subjects:["mysterious lighthouse glowing in fog","young detective examining clues by torchlight","hidden door discovered in old library"]},
-  {label:"Sci-Fi",         emoji:"🚀", sceneClass:"",imgSeeds:[50,200,440,680,920],subjects:["spaceship flying past colourful planets","friendly robot and child exploring alien city","futuristic city with flying cars and neon lights"]}
+  {label:"Action",         emoji:"⚔️", imgSeeds:[10,237,453,600,812], subjects:["brave hero facing a dragon","epic battle on a castle bridge","hero celebrating victory at sunset"]},
+  {label:"Fantasy & Magic",emoji:"🧙", imgSeeds:[20,119,338,501,743], subjects:["wizard casting spells in enchanted forest","fairy village inside a glowing mushroom","young witch flying over moonlit castle"]},
+  {label:"Adventure",      emoji:"🗺️",imgSeeds:[30,154,402,620,890], subjects:["explorer finding hidden waterfall in jungle","children discovering treasure on island","hot air balloon over ancient ruins"]},
+  {label:"Thriller",       emoji:"🔦", imgSeeds:[40,188,320,540,760], subjects:["mysterious lighthouse glowing in fog","young detective examining clues by torchlight","hidden door discovered in old library"]},
+  {label:"Sci-Fi",         emoji:"🚀", imgSeeds:[50,200,440,680,920], subjects:["spaceship flying past colourful planets","friendly robot and child exploring alien city","futuristic city with flying cars"]}
 ];
 const LOADING_MSGS=[
   ["Writing your story…","The story owl is scribbling away!"],
@@ -205,19 +209,18 @@ const LOADING_MSGS=[
   ["Adding magic details…","Every great story needs sparkle ✨"],
   ["Almost ready…","Get cosy — story time soon! 🌙"],
 ];
-
 let currentGenre=null, loadingInterval=null, sparkleInterval=null;
 
-// ── API KEY MANAGEMENT ──
-function getKey(){ return localStorage.getItem('bedtime_api_key'); }
+function getKey(){return localStorage.getItem('bedtime_gemini_key');}
 function saveKey(){
   const k=document.getElementById('api-key-input').value.trim();
-  if(!k.startsWith('sk-')){ alert('Please enter a valid Anthropic API key starting with sk-'); return; }
-  localStorage.setItem('bedtime_api_key',k);
+  if(!k.startsWith('AIza')){
+    document.getElementById('err-msg').style.display='block'; return;
+  }
+  localStorage.setItem('bedtime_gemini_key',k);
   showHome();
 }
-function resetKey(){ localStorage.removeItem('bedtime_api_key'); showSetup(); }
-
+function resetKey(){localStorage.removeItem('bedtime_gemini_key');showSetup();}
 function showSetup(){
   document.getElementById('setup').style.display='flex';
   document.getElementById('home').style.display='none';
@@ -230,56 +233,51 @@ function showHome(){
   document.getElementById('story-screen').style.display='none';
   document.getElementById('loading').style.display='none';
 }
-function goHome(){ showHome(); stopSparkles(); }
+function goHome(){showHome();stopSparkles();}
+window.onload=()=>{getKey()?showHome():showSetup();};
 
-// On load
-window.onload=()=>{ getKey() ? showHome() : showSetup(); };
-
-// ── SPARKLES ──
 function startSparkles(){
-  const c=document.getElementById('sparkles'); c.innerHTML='';
+  const c=document.getElementById('sparkles');c.innerHTML='';
   const em=['⭐','✨','🌟','💫','🌙','📖'];
   sparkleInterval=setInterval(()=>{
-    const s=document.createElement('div'); s.className='sparkle';
+    const s=document.createElement('div');s.className='sparkle';
     s.textContent=em[Math.floor(Math.random()*em.length)];
-    s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
+    s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
     s.style.animationDuration=(2+Math.random()*2)+'s';
-    c.appendChild(s); setTimeout(()=>s.remove(),4000);
+    c.appendChild(s);setTimeout(()=>s.remove(),4000);
   },400);
 }
-function stopSparkles(){ clearInterval(sparkleInterval); }
+function stopSparkles(){clearInterval(sparkleInterval);}
 
-// ── SCENE IMAGE ──
 function makeImageBlock(idx){
-  const wrap=document.createElement('div'); wrap.className='scene-wrap';
-  const ph=document.createElement('div'); ph.className='scene-ph';
+  const wrap=document.createElement('div');wrap.className='scene-wrap';
+  const ph=document.createElement('div');ph.className='scene-ph';
   ph.innerHTML=`<div class="pa">🎨</div><div>Painting scene ${idx+1}…</div>`;
   wrap.appendChild(ph);
   const seed=currentGenre.imgSeeds[idx%currentGenre.imgSeeds.length];
-  const img=new Image();
-  img.style.width='100%'; img.style.borderRadius='14px';
-  img.onload=()=>{ ph.remove(); img.classList.add('loaded'); wrap.appendChild(img);
+  const img=new Image();img.style.width='100%';img.style.borderRadius='14px';
+  img.onload=()=>{
+    ph.remove();img.classList.add('loaded');wrap.appendChild(img);
     const cap=document.createElement('div');
     cap.style.cssText='position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:0.8rem;font-size:0.75rem;color:rgba(255,255,255,0.7);font-style:italic;text-align:center;border-radius:0 0 14px 14px;';
     cap.textContent=currentGenre.subjects[idx%currentGenre.subjects.length];
-    wrap.style.position='relative'; wrap.appendChild(cap);
+    wrap.style.position='relative';wrap.appendChild(cap);
   };
-  img.onerror=()=>{ ph.innerHTML=`<div class="pa">🌟</div><div style="color:var(--soft)">Close your eyes and imagine this scene!</div>`; };
+  img.onerror=()=>{ph.innerHTML=`<div class="pa">🌟</div><div style="color:var(--soft)">Close your eyes and imagine this scene!</div>`;};
   img.src=`https://picsum.photos/seed/${currentGenre.label.replace(/\s/g,'')}-${seed}/680/360`;
   img.alt=`Story scene ${idx+1}`;
   return wrap;
 }
 
-// ── RENDER ──
 function parseAndRender(text){
-  const body=document.getElementById('story-body'); body.innerHTML='';
+  const body=document.getElementById('story-body');body.innerHTML='';
   const tM=text.match(/\[TITLE\]([\s\S]*?)\[\/TITLE\]/);
   document.getElementById('story-title').textContent=tM?tM[1].trim():currentGenre.emoji+' Story';
   const rest=text.replace(/\[TITLE\][\s\S]*?\[\/TITLE\]/,'');
   const tokens=rest.split(/(\[PARA\][\s\S]*?\[\/PARA\]|\[IMAGE\][\s\S]*?\[\/IMAGE\])/g);
   let imgIdx=0;
   tokens.forEach(tok=>{
-    tok=tok.trim(); if(!tok) return;
+    tok=tok.trim();if(!tok)return;
     const pM=tok.match(/^\[PARA\]([\s\S]*?)\[\/PARA\]$/);
     if(pM){const p=document.createElement('p');p.className='story-para';p.textContent=pM[1].trim();body.appendChild(p);return;}
     const iM=tok.match(/^\[IMAGE\]([\s\S]*?)\[\/IMAGE\]$/);
@@ -289,10 +287,8 @@ function parseAndRender(text){
   document.getElementById('story-footer').className='story-footer';
 }
 
-// ── MAIN ──
 async function startStory(){
-  const key=getKey();
-  if(!key){ showSetup(); return; }
+  const key=getKey();if(!key){showSetup();return;}
   currentGenre=GENRES[Math.floor(Math.random()*GENRES.length)];
   document.getElementById('home').style.display='none';
   document.getElementById('story-screen').style.display='none';
@@ -300,47 +296,40 @@ async function startStory(){
   startSparkles();
   let mi=0;
   const upd=()=>{const[t,s]=LOADING_MSGS[mi%LOADING_MSGS.length];document.getElementById('loading-title').textContent=t;document.getElementById('loading-sub').textContent=s;mi++;};
-  upd(); loadingInterval=setInterval(upd,2800);
+  upd();loadingInterval=setInterval(upd,2800);
 
-  const storyPrompt=`Write a children's bedtime ${currentGenre.label} story for ages 6-12.
-
-Use ONLY these exact tags — no markdown, no extra text:
+  const prompt=`Write a children's bedtime ${currentGenre.label} story for ages 6-12. Use ONLY these exact tags:
 
 [TITLE]Story Title Here[/TITLE]
-
 [PARA]Opening paragraph (~80 words). Set the scene and introduce the hero.[/PARA]
-
-[IMAGE]scene description[/IMAGE]
-
+[IMAGE]scene1[/IMAGE]
 [PARA]Second paragraph (~80 words). The adventure begins.[/PARA]
-
-[PARA]Third paragraph (~80 words). The exciting middle — challenge or mystery.[/PARA]
-
-[IMAGE]scene description[/IMAGE]
-
+[PARA]Third paragraph (~80 words). Exciting middle — challenge or mystery.[/PARA]
+[IMAGE]scene2[/IMAGE]
 [PARA]Fourth paragraph (~80 words). The hero solves the problem.[/PARA]
-
 [PARA]Fifth paragraph (~80 words). Peaceful, happy, sleepy ending.[/PARA]
+[IMAGE]scene3[/IMAGE]
 
-[IMAGE]scene description[/IMAGE]
-
-Rules: exciting but NOT violent. Ending must be calm and sleep-inducing.`;
+Rules: exciting but NOT violent. Ending must be calm and sleep-inducing. No markdown.`;
 
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "x-api-key": key,
-        "anthropic-version":"2023-06-01",
-        "anthropic-dangerous-allow-browser":"true"
-      },
-      body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:2000,messages:[{role:"user",content:storyPrompt}]})
-    });
+    // Gemini API — allows browser CORS calls natively
+    const res=await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
+      {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          contents:[{parts:[{text:prompt}]}],
+          generationConfig:{maxOutputTokens:2000,temperature:0.9}
+        })
+      }
+    );
     const data=await res.json();
-    if(data.error){ throw new Error(data.error.message); }
-    const text=(data.content||[]).map(b=>b.text||'').join('');
-    clearInterval(loadingInterval); stopSparkles();
+    if(data.error) throw new Error(data.error.message);
+    const text=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
+    if(!text) throw new Error('No story received. Please try again.');
+    clearInterval(loadingInterval);stopSparkles();
     document.getElementById('loading').style.display='none';
     document.getElementById('genre-tag').textContent=currentGenre.emoji+' '+currentGenre.label;
     document.getElementById('story-title').textContent='✨ Loading…';
@@ -349,12 +338,12 @@ Rules: exciting but NOT violent. Ending must be calm and sleep-inducing.`;
     window.scrollTo(0,0);
     parseAndRender(text);
   }catch(err){
-    clearInterval(loadingInterval); stopSparkles();
+    clearInterval(loadingInterval);stopSparkles();
     document.getElementById('loading').style.display='none';
     document.getElementById('story-screen').style.display='block';
     document.getElementById('genre-tag').textContent='⚠️ Oops';
     document.getElementById('story-title').textContent='Try again!';
-    document.getElementById('story-body').innerHTML='<p class="story-para">'+err.message+'</p>';
+    document.getElementById('story-body').innerHTML=`<p class="story-para">${err.message}</p>`;
     document.getElementById('story-footer').className='story-footer';
     console.error(err);
   }

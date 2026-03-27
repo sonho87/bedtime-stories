@@ -9,7 +9,6 @@
   :root{--night:#0b0f2e;--card:#161d4a;--gold:#f5c842;--soft:#a8b4ff;--text:#e8eaff;--muted:#7a84c0;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{min-height:100vh;background:var(--night);font-family:'Nunito',sans-serif;color:var(--text);overflow-x:hidden;}
-
   .stars{position:fixed;inset:0;pointer-events:none;z-index:0;background:
     radial-gradient(1px 1px at 10% 15%,#fff 0%,transparent 100%),
     radial-gradient(1px 1px at 25% 40%,#fff 0%,transparent 100%),
@@ -23,51 +22,55 @@
     radial-gradient(1px 1px at 90% 85%,#fff 0%,transparent 100%),
     radial-gradient(1px 1px at 5% 90%,#fff 0%,transparent 100%),
     radial-gradient(1.5px 1.5px at 45% 75%,#fff 0%,transparent 100%);}
-
   .moon{position:fixed;top:4%;right:6%;font-size:3.5rem;filter:drop-shadow(0 0 20px rgba(245,200,66,0.5));animation:float 6s ease-in-out infinite;z-index:1;pointer-events:none;}
   @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 
+  /* ── SETUP SCREEN ── */
+  #setup{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+  .setup-icon{font-size:4rem;margin-bottom:1rem;animation:float 4s ease-in-out infinite;}
+  .setup-title{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;background:linear-gradient(135deg,#f5c842,#ff9de2,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
+  .setup-sub{color:var(--muted);font-size:0.95rem;margin-bottom:2rem;max-width:400px;line-height:1.6;}
+  .setup-card{background:var(--card);border:1px solid rgba(168,180,255,0.15);border-radius:20px;padding:2rem;max-width:440px;width:100%;}
+  .setup-label{font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;text-align:left;}
+  .setup-input{width:100%;background:#0b0f2e;border:2px solid rgba(168,180,255,0.2);border-radius:12px;padding:0.9rem 1rem;color:var(--text);font-size:0.95rem;font-family:'Nunito',sans-serif;outline:none;transition:border 0.2s;margin-bottom:1rem;}
+  .setup-input:focus{border-color:var(--gold);}
+  .setup-btn{width:100%;background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:12px;padding:1rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:900;color:#0b0f2e;cursor:pointer;transition:transform 0.2s;}
+  .setup-btn:hover{transform:scale(1.02);}
+  .setup-note{font-size:0.75rem;color:var(--muted);margin-top:1rem;line-height:1.5;}
+  .setup-note a{color:var(--soft);}
+
   /* ── HOME ── */
-  #home{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
-  .home-owl{font-size:5rem;margin-bottom:1rem;animation:float 5s ease-in-out infinite;cursor:default;}
+  #home{display:none;position:relative;z-index:2;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+  .home-owl{font-size:5rem;margin-bottom:1rem;animation:float 5s ease-in-out infinite;}
   .home-title{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#f5c842,#ff9de2,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:0.4rem;}
   .home-sub{font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem;}
-  .big-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:50%;width:200px;height:200px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;color:#0b0f2e;box-shadow:0 0 50px rgba(245,200,66,0.45),0 0 90px rgba(168,180,255,0.2);transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;animation:pulse-btn 3s ease-in-out infinite;}
-  @keyframes pulse-btn{0%,100%{box-shadow:0 0 50px rgba(245,200,66,0.45),0 0 90px rgba(168,180,255,0.2);}50%{box-shadow:0 0 80px rgba(245,200,66,0.7),0 0 120px rgba(168,180,255,0.35);}}
+  .big-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:50%;width:200px;height:200px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;color:#0b0f2e;box-shadow:0 0 50px rgba(245,200,66,0.45);transition:transform 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;animation:pulse-btn 3s ease-in-out infinite;}
+  @keyframes pulse-btn{0%,100%{box-shadow:0 0 50px rgba(245,200,66,0.45);}50%{box-shadow:0 0 80px rgba(245,200,66,0.7);}}
   .big-btn:hover{transform:scale(1.07);}
   .big-btn:active{transform:scale(0.96);}
   .big-btn .btn-icon{font-size:2.6rem;}
   .genre-badges{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:2rem;max-width:380px;}
   .badge{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:0.3rem 0.9rem;font-size:0.8rem;color:var(--muted);}
+  .reset-key{margin-top:1.5rem;font-size:0.78rem;color:var(--muted);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif;}
 
-  /* ── LOADING OVERLAY ── */
+  /* ── LOADING ── */
   #loading{display:none;position:fixed;inset:0;z-index:20;background:var(--night);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;}
-
-  /* Animated owl SVG */
-  .anim-owl{width:140px;height:140px;margin-bottom:1.5rem;}
-
-  /* Floating books */
-  .books-row{display:flex;gap:1rem;margin-bottom:1.8rem;}
+  .anim-owl{width:130px;height:130px;margin-bottom:1.5rem;}
+  .books-row{display:flex;gap:1rem;margin-bottom:1.5rem;}
   .book{font-size:2rem;animation:book-float 2s ease-in-out infinite;}
-  .book:nth-child(1){animation-delay:0s;}
   .book:nth-child(2){animation-delay:0.3s;}
   .book:nth-child(3){animation-delay:0.6s;}
   @keyframes book-float{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-12px) rotate(5deg);}}
-
-  .loading-title{font-size:1.5rem;font-weight:900;color:var(--gold);margin-bottom:0.4rem;}
-  .loading-sub{font-size:0.95rem;color:var(--muted);margin-bottom:1.2rem;}
-
-  /* Progress bar */
-  .progress-track{width:260px;height:8px;background:rgba(255,255,255,0.1);border-radius:999px;overflow:hidden;}
-  .progress-fill{height:100%;background:linear-gradient(90deg,#f5c842,#ff9de2,#a8b4ff);border-radius:999px;animation:progress-anim 4s ease-in-out infinite;}
-  @keyframes progress-anim{0%{width:5%;}60%{width:85%;}100%{width:95%;};}
-
-  /* Stars sparkle */
+  .loading-title{font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:0.4rem;}
+  .loading-sub{font-size:0.9rem;color:var(--muted);margin-bottom:1.2rem;}
+  .progress-track{width:240px;height:8px;background:rgba(255,255,255,0.1);border-radius:999px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#f5c842,#ff9de2,#a8b4ff);border-radius:999px;animation:prog 4s ease-in-out infinite;}
+  @keyframes prog{0%{width:5%;}60%{width:85%;}100%{width:95%;}}
   .sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
-  .sparkle{position:absolute;font-size:1.2rem;animation:sparkle-anim 3s ease-in-out infinite;}
-  @keyframes sparkle-anim{0%{opacity:0;transform:scale(0) translateY(0);}30%{opacity:1;transform:scale(1) translateY(-20px);}100%{opacity:0;transform:scale(0.5) translateY(-60px);}}
+  .sparkle{position:absolute;font-size:1.2rem;animation:spk 3s ease-in-out infinite;}
+  @keyframes spk{0%{opacity:0;transform:scale(0) translateY(0);}30%{opacity:1;transform:scale(1) translateY(-20px);}100%{opacity:0;transform:scale(0.5) translateY(-60px);}}
 
-  /* ── STORY SCREEN ── */
+  /* ── STORY ── */
   #story-screen{display:none;position:relative;z-index:2;min-height:100vh;padding:1.5rem 1rem 5rem;}
   .story-header{text-align:center;margin-bottom:1.5rem;}
   .genre-tag{display:inline-block;background:linear-gradient(135deg,#f5c842,#ff9de2);color:#0b0f2e;font-weight:900;font-size:0.85rem;padding:0.3rem 1rem;border-radius:999px;margin-bottom:0.8rem;letter-spacing:0.05em;text-transform:uppercase;}
@@ -75,33 +78,38 @@
   .story-meta{color:var(--muted);font-size:0.85rem;}
   .story-card{max-width:700px;margin:0 auto;background:var(--card);border:1px solid rgba(168,180,255,0.12);border-radius:24px;padding:clamp(1.2rem,4vw,2rem);box-shadow:0 8px 40px rgba(0,0,0,0.4);}
   .story-para{font-family:'Crimson Pro',serif;font-size:clamp(1.05rem,2.5vw,1.2rem);line-height:1.9;color:#d8dcff;margin-bottom:1.2rem;}
-
-  /* Scene image */
-  .scene-wrap{margin:0.8rem 0 1.4rem;border-radius:16px;overflow:hidden;border:2px solid rgba(168,180,255,0.2);box-shadow:0 4px 30px rgba(0,0,0,0.5);background:#0d1235;min-height:180px;display:flex;align-items:center;justify-content:center;}
+  .scene-wrap{margin:0.8rem 0 1.4rem;border-radius:16px;overflow:hidden;border:2px solid rgba(168,180,255,0.2);box-shadow:0 4px 30px rgba(0,0,0,0.5);background:#0d1235;min-height:160px;display:flex;align-items:center;justify-content:center;position:relative;}
   .scene-wrap img{width:100%;display:block;border-radius:14px;opacity:0;transition:opacity 0.6s;}
   .scene-wrap img.loaded{opacity:1;}
-  .scene-placeholder{display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:2rem;color:var(--muted);font-size:0.85rem;text-align:center;}
-  .scene-placeholder .paint-anim{font-size:2rem;animation:float 2s ease-in-out infinite;}
-
-  /* genre color themes for scene bg */
-  .scene-action{background:linear-gradient(135deg,#1a0a2e,#2d1b4e);}
-  .scene-fantasy{background:linear-gradient(135deg,#0a1a2e,#1b2d4e);}
-  .scene-adventure{background:linear-gradient(135deg,#1a2a0a,#2d4e1b);}
-  .scene-thriller{background:linear-gradient(135deg,#1a0a0a,#2d1b1b);}
-  .scene-scifi{background:linear-gradient(135deg,#0a1a2e,#0a2d2d);}
-
-  /* Footer */
+  .scene-ph{display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:2rem;color:var(--muted);font-size:0.85rem;}
+  .scene-ph .pa{font-size:2rem;animation:float 2s ease-in-out infinite;}
   .story-footer{max-width:700px;margin:1.5rem auto 0;display:flex;flex-direction:column;align-items:center;gap:1rem;}
-  .new-story-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:999px;padding:1rem 2.5rem;cursor:pointer;font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:#0b0f2e;box-shadow:0 0 30px rgba(245,200,66,0.3);transition:transform 0.2s;}
+  .new-story-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:999px;padding:1rem 2.5rem;cursor:pointer;font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:#0b0f2e;transition:transform 0.2s;}
   .new-story-btn:hover{transform:scale(1.04);}
   .back-link{color:var(--muted);font-size:0.9rem;cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif;}
   .goodnight{color:var(--muted);font-size:0.85rem;}
-  .footer-hidden{display:none;}
+  .hidden{display:none;}
 </style>
 </head>
 <body>
 <div class="stars"></div>
 <div class="moon">🌕</div>
+
+<!-- SETUP -->
+<div id="setup">
+  <div class="setup-icon">🦉</div>
+  <h1 class="setup-title">Tonight's Story</h1>
+  <p class="setup-sub">One-time setup — enter your Anthropic API key to unlock unlimited bedtime stories!</p>
+  <div class="setup-card">
+    <div class="setup-label">🔑 Your Anthropic API Key</div>
+    <input class="setup-input" type="password" id="api-key-input" placeholder="sk-ant-api03-..." />
+    <button class="setup-btn" onclick="saveKey()">✨ Start Reading Stories!</button>
+    <div class="setup-note">
+      Your key is saved only on this device — never sent anywhere except Anthropic.<br/>
+      Get a free key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
+    </div>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="home">
@@ -119,46 +127,39 @@
     <span class="badge">🔦 Thriller</span>
     <span class="badge">🚀 Sci-Fi</span>
   </div>
+  <button class="reset-key" onclick="resetKey()">🔑 Change API key</button>
 </div>
 
 <!-- LOADING -->
 <div id="loading">
   <div class="sparkles" id="sparkles"></div>
-
-  <!-- Animated SVG Owl -->
   <svg class="anim-owl" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
     <style>
-      .owl-body{animation:owl-bob 1.2s ease-in-out infinite;}
-      .owl-eye-l,.owl-eye-r{animation:owl-blink 3s ease-in-out infinite;}
-      .owl-wing-l{transform-origin:60px 80px;animation:wing-l 1.2s ease-in-out infinite;}
-      .owl-wing-r{transform-origin:80px 80px;animation:wing-r 1.2s ease-in-out infinite;}
-      .owl-star{animation:star-spin 2s linear infinite;}
+      .ob{animation:owl-bob 1.2s ease-in-out infinite;}
+      .oel{animation:owl-blink 3s ease-in-out infinite;}
+      .oer{animation:owl-blink 3s ease-in-out infinite;}
+      .wl{transform-origin:60px 80px;animation:wing-l 1.2s ease-in-out infinite;}
+      .wr{transform-origin:80px 80px;animation:wing-r 1.2s ease-in-out infinite;}
+      .os{animation:star-spin 2s linear infinite;transform-origin:70px 70px;}
       @keyframes owl-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
       @keyframes owl-blink{0%,90%,100%{transform:scaleY(1);}95%{transform:scaleY(0.1);}}
       @keyframes wing-l{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-20deg);}}
       @keyframes wing-r{0%,100%{transform:rotate(0deg);}50%{transform:rotate(20deg);}}
       @keyframes star-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     </style>
-    <g class="owl-body">
-      <!-- Body -->
+    <g class="ob">
       <ellipse cx="70" cy="88" rx="32" ry="36" fill="#3d2b6b"/>
       <ellipse cx="70" cy="96" rx="22" ry="26" fill="#5a3f9a"/>
-      <!-- Wings -->
-      <ellipse class="owl-wing-l" cx="42" cy="88" rx="14" ry="24" fill="#3d2b6b"/>
-      <ellipse class="owl-wing-r" cx="98" cy="88" rx="14" ry="24" fill="#3d2b6b"/>
-      <!-- Head -->
+      <ellipse class="wl" cx="42" cy="88" rx="14" ry="24" fill="#3d2b6b"/>
+      <ellipse class="wr" cx="98" cy="88" rx="14" ry="24" fill="#3d2b6b"/>
       <circle cx="70" cy="54" r="26" fill="#3d2b6b"/>
-      <!-- Ears -->
       <polygon points="50,32 44,16 58,28" fill="#3d2b6b"/>
       <polygon points="90,32 96,16 82,28" fill="#3d2b6b"/>
-      <!-- Face -->
       <circle cx="60" cy="54" r="10" fill="#f5c842"/>
       <circle cx="80" cy="54" r="10" fill="#f5c842"/>
-      <g class="owl-eye-l"><circle cx="60" cy="54" r="7" fill="#1a0a3e"/><circle cx="62" cy="52" r="2" fill="white"/></g>
-      <g class="owl-eye-r"><circle cx="80" cy="54" r="7" fill="#1a0a3e"/><circle cx="82" cy="52" r="2" fill="white"/></g>
-      <!-- Beak -->
+      <g class="oel"><circle cx="60" cy="54" r="7" fill="#1a0a3e"/><circle cx="62" cy="52" r="2" fill="white"/></g>
+      <g class="oer"><circle cx="80" cy="54" r="7" fill="#1a0a3e"/><circle cx="82" cy="52" r="2" fill="white"/></g>
       <polygon points="70,60 65,68 75,68" fill="#f5c842"/>
-      <!-- Book -->
       <rect x="52" y="104" width="36" height="26" rx="3" fill="#ff9de2"/>
       <line x1="70" y1="104" x2="70" y2="130" stroke="#c06090" stroke-width="2"/>
       <line x1="55" y1="112" x2="67" y2="112" stroke="#c06090" stroke-width="1.5"/>
@@ -166,21 +167,12 @@
       <line x1="73" y1="112" x2="85" y2="112" stroke="#c06090" stroke-width="1.5"/>
       <line x1="73" y1="118" x2="85" y2="118" stroke="#c06090" stroke-width="1.5"/>
     </g>
-    <!-- Orbiting star -->
-    <g class="owl-star" style="transform-origin:70px 70px">
-      <circle cx="110" cy="30" r="5" fill="#f5c842" opacity="0.9"/>
-      <polygon points="110,24 111.5,28.5 116,28.5 112.5,31.5 113.8,36 110,33 106.2,36 107.5,31.5 104,28.5 108.5,28.5" fill="#f5c842"/>
-    </g>
+    <g class="os"><circle cx="110" cy="30" r="5" fill="#f5c842" opacity="0.9"/>
+    <polygon points="110,24 111.5,28.5 116,28.5 112.5,31.5 113.8,36 110,33 106.2,36 107.5,31.5 104,28.5 108.5,28.5" fill="#f5c842"/></g>
   </svg>
-
-  <div class="books-row">
-    <div class="book">📚</div>
-    <div class="book">✨</div>
-    <div class="book">🌙</div>
-  </div>
-
+  <div class="books-row"><div class="book">📚</div><div class="book">✨</div><div class="book">🌙</div></div>
   <div class="loading-title" id="loading-title">Writing your story…</div>
-  <div class="loading-sub" id="loading-sub">The story owl is hard at work!</div>
+  <div class="loading-sub" id="loading-sub">The story owl is scribbling away!</div>
   <div class="progress-track"><div class="progress-fill"></div></div>
 </div>
 
@@ -191,10 +183,8 @@
     <h2 class="story-title" id="story-title"> </h2>
     <p class="story-meta">📖 ~5 min read &nbsp;·&nbsp; 🎨 Illustrated &nbsp;·&nbsp; 🌙 Bedtime</p>
   </div>
-  <div class="story-card">
-    <div id="story-body"></div>
-  </div>
-  <div class="story-footer footer-hidden" id="story-footer">
+  <div class="story-card"><div id="story-body"></div></div>
+  <div class="story-footer hidden" id="story-footer">
     <button class="new-story-btn" onclick="startStory()">✨ Give me another story!</button>
     <button class="back-link" onclick="goHome()">← Back to home</button>
     <p class="goodnight">🌟 Sweet dreams! 🌟</p>
@@ -202,149 +192,115 @@
 </div>
 
 <script>
-const GENRES = [
-  {label:"Action",         emoji:"⚔️",  sceneClass:"scene-action",
-   imageKeywords:["battle","warrior","hero","fight","sword","dragon","explosion"],
-   subjects:["a brave young warrior facing a fire-breathing dragon","an epic sword fight on a castle bridge","a hero leaping across rooftops at sunset"]},
-  {label:"Fantasy & Magic",emoji:"🧙",  sceneClass:"scene-fantasy",
-   imageKeywords:["wizard","magic","enchanted","castle","spell","fairy","glowing"],
-   subjects:["a wizard casting colourful spells in an enchanted forest","a fairy village hidden inside a giant glowing mushroom","a young witch riding a broomstick over a moonlit castle"]},
-  {label:"Adventure",      emoji:"🗺️", sceneClass:"scene-adventure",
-   imageKeywords:["jungle","treasure","map","explorer","island","cave","waterfall"],
-   subjects:["an explorer discovering a hidden waterfall in a jungle","children finding a treasure chest on a tropical island","a hot air balloon flying over ancient ruins"]},
-  {label:"Thriller",       emoji:"🔦",  sceneClass:"scene-thriller",
-   imageKeywords:["mystery","lighthouse","fog","detective","clue","shadow","secret"],
-   subjects:["a mysterious lighthouse glowing in the foggy night","a young detective examining clues by torchlight","a hidden door discovered in an old library"]},
-  {label:"Sci-Fi",         emoji:"🚀",  sceneClass:"scene-scifi",
-   imageKeywords:["spaceship","robot","alien","planet","galaxy","futuristic","neon"],
-   subjects:["a spaceship flying past colourful planets and nebulae","a friendly robot and a child exploring an alien city","a futuristic city with flying cars and neon lights"]}
+const GENRES=[
+  {label:"Action",         emoji:"⚔️", sceneClass:"",imgSeeds:[10,237,453,600,812],subjects:["brave hero facing a dragon","epic battle on a castle bridge","hero celebrating victory at sunset"]},
+  {label:"Fantasy & Magic",emoji:"🧙", sceneClass:"",imgSeeds:[20,119,338,501,743],subjects:["wizard casting spells in enchanted forest","fairy village inside a glowing mushroom","young witch flying over moonlit castle"]},
+  {label:"Adventure",      emoji:"🗺️",sceneClass:"",imgSeeds:[30,154,402,620,890],subjects:["explorer finding hidden waterfall in jungle","children discovering treasure on island","hot air balloon over ancient ruins"]},
+  {label:"Thriller",       emoji:"🔦", sceneClass:"",imgSeeds:[40,188,320,540,760],subjects:["mysterious lighthouse glowing in fog","young detective examining clues by torchlight","hidden door discovered in old library"]},
+  {label:"Sci-Fi",         emoji:"🚀", sceneClass:"",imgSeeds:[50,200,440,680,920],subjects:["spaceship flying past colourful planets","friendly robot and child exploring alien city","futuristic city with flying cars and neon lights"]}
 ];
-
-const LOADING_MSGS = [
+const LOADING_MSGS=[
   ["Writing your story…","The story owl is scribbling away!"],
   ["Choosing the adventure…","So many exciting paths to take!"],
   ["Adding magic details…","Every great story needs sparkle ✨"],
-  ["Almost ready…","Get cosy — it's nearly story time! 🌙"],
+  ["Almost ready…","Get cosy — story time soon! 🌙"],
 ];
 
-let loadingInterval, currentGenre, sparkleInterval;
+let currentGenre=null, loadingInterval=null, sparkleInterval=null;
 
-/* ── Sparkles ── */
-function startSparkles(){
-  const c = document.getElementById('sparkles');
-  c.innerHTML='';
-  const emojis=['⭐','✨','🌟','💫','🌙','📖'];
-  sparkleInterval = setInterval(()=>{
-    const s = document.createElement('div');
-    s.className='sparkle';
-    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    s.style.left = Math.random()*100+'%';
-    s.style.top  = Math.random()*100+'%';
-    s.style.animationDuration = (2+Math.random()*2)+'s';
-    c.appendChild(s);
-    setTimeout(()=>s.remove(), 4000);
-  }, 400);
+// ── API KEY MANAGEMENT ──
+function getKey(){ return localStorage.getItem('bedtime_api_key'); }
+function saveKey(){
+  const k=document.getElementById('api-key-input').value.trim();
+  if(!k.startsWith('sk-')){ alert('Please enter a valid Anthropic API key starting with sk-'); return; }
+  localStorage.setItem('bedtime_api_key',k);
+  showHome();
 }
-function stopSparkles(){ clearInterval(sparkleInterval); }
+function resetKey(){ localStorage.removeItem('bedtime_api_key'); showSetup(); }
 
-function goHome(){
+function showSetup(){
+  document.getElementById('setup').style.display='flex';
+  document.getElementById('home').style.display='none';
+  document.getElementById('story-screen').style.display='none';
+  document.getElementById('loading').style.display='none';
+}
+function showHome(){
+  document.getElementById('setup').style.display='none';
   document.getElementById('home').style.display='flex';
   document.getElementById('story-screen').style.display='none';
   document.getElementById('loading').style.display='none';
-  stopSparkles();
 }
+function goHome(){ showHome(); stopSparkles(); }
 
-/* ── Illustrated scene using Picsum (always works) + genre overlay ── */
-function makeImageBlock(sceneDesc, idx){
-  const wrap = document.createElement('div');
-  wrap.className = `scene-wrap ${currentGenre.sceneClass}`;
+// On load
+window.onload=()=>{ getKey() ? showHome() : showSetup(); };
 
-  // Show animated placeholder
-  const ph = document.createElement('div');
-  ph.className='scene-placeholder';
-  ph.innerHTML=`<div class="paint-anim">🎨</div><div>Painting scene ${idx+1}…</div>`;
+// ── SPARKLES ──
+function startSparkles(){
+  const c=document.getElementById('sparkles'); c.innerHTML='';
+  const em=['⭐','✨','🌟','💫','🌙','📖'];
+  sparkleInterval=setInterval(()=>{
+    const s=document.createElement('div'); s.className='sparkle';
+    s.textContent=em[Math.floor(Math.random()*em.length)];
+    s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%';
+    s.style.animationDuration=(2+Math.random()*2)+'s';
+    c.appendChild(s); setTimeout(()=>s.remove(),4000);
+  },400);
+}
+function stopSparkles(){ clearInterval(sparkleInterval); }
+
+// ── SCENE IMAGE ──
+function makeImageBlock(idx){
+  const wrap=document.createElement('div'); wrap.className='scene-wrap';
+  const ph=document.createElement('div'); ph.className='scene-ph';
+  ph.innerHTML=`<div class="pa">🎨</div><div>Painting scene ${idx+1}…</div>`;
   wrap.appendChild(ph);
-
-  // Use Picsum with a seed based on scene description for consistent but varied images
-  // Different seeds for different genre feels
-  const seeds = {
-    "Action":        [10,237,453,600,812],
-    "Fantasy & Magic":[20,119,338,501,743],
-    "Adventure":     [30,154,402,620,890],
-    "Thriller":      [40,188,320,540,760],
-    "Sci-Fi":        [50,200,440,680,920]
-  };
-  const seedArr = seeds[currentGenre.label] || [100,200,300,400,500];
-  const seed = seedArr[idx % seedArr.length];
-
-  const img = new Image();
-  img.style.width='100%';
-  img.style.borderRadius='14px';
-
-  img.onload = () => {
-    ph.remove();
-    img.classList.add('loaded');
-    wrap.appendChild(img);
-
-    // Add caption overlay
-    const cap = document.createElement('div');
+  const seed=currentGenre.imgSeeds[idx%currentGenre.imgSeeds.length];
+  const img=new Image();
+  img.style.width='100%'; img.style.borderRadius='14px';
+  img.onload=()=>{ ph.remove(); img.classList.add('loaded'); wrap.appendChild(img);
+    const cap=document.createElement('div');
     cap.style.cssText='position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:0.8rem;font-size:0.75rem;color:rgba(255,255,255,0.7);font-style:italic;text-align:center;border-radius:0 0 14px 14px;';
-    cap.textContent = currentGenre.subjects[idx % currentGenre.subjects.length];
-    wrap.style.position='relative';
-    wrap.appendChild(cap);
+    cap.textContent=currentGenre.subjects[idx%currentGenre.subjects.length];
+    wrap.style.position='relative'; wrap.appendChild(cap);
   };
-  img.onerror = () => {
-    ph.innerHTML=`<div class="paint-anim">🖼️</div><div style="color:var(--soft)">Close your eyes and imagine this scene! 🌟</div>`;
-  };
-
-  img.src = `https://picsum.photos/seed/${currentGenre.label.replace(/\s/g,'')}-${seed}/680/360`;
-  img.alt = `Story scene ${idx+1}`;
+  img.onerror=()=>{ ph.innerHTML=`<div class="pa">🌟</div><div style="color:var(--soft)">Close your eyes and imagine this scene!</div>`; };
+  img.src=`https://picsum.photos/seed/${currentGenre.label.replace(/\s/g,'')}-${seed}/680/360`;
+  img.alt=`Story scene ${idx+1}`;
   return wrap;
 }
 
-/* ── Render parsed story ── */
+// ── RENDER ──
 function parseAndRender(text){
-  const body = document.getElementById('story-body');
-  body.innerHTML='';
-
-  const titleM = text.match(/\[TITLE\]([\s\S]*?)\[\/TITLE\]/);
-  document.getElementById('story-title').textContent = titleM ? titleM[1].trim() : currentGenre.emoji+' '+currentGenre.label+' Story';
-
-  const rest = text.replace(/\[TITLE\][\s\S]*?\[\/TITLE\]/,'');
-  const tokens = rest.split(/(\[PARA\][\s\S]*?\[\/PARA\]|\[IMAGE\][\s\S]*?\[\/IMAGE\])/g);
-
-  let imgIdx = 0;
+  const body=document.getElementById('story-body'); body.innerHTML='';
+  const tM=text.match(/\[TITLE\]([\s\S]*?)\[\/TITLE\]/);
+  document.getElementById('story-title').textContent=tM?tM[1].trim():currentGenre.emoji+' Story';
+  const rest=text.replace(/\[TITLE\][\s\S]*?\[\/TITLE\]/,'');
+  const tokens=rest.split(/(\[PARA\][\s\S]*?\[\/PARA\]|\[IMAGE\][\s\S]*?\[\/IMAGE\])/g);
+  let imgIdx=0;
   tokens.forEach(tok=>{
-    tok=tok.trim();
-    if(!tok) return;
-    const pM = tok.match(/^\[PARA\]([\s\S]*?)\[\/PARA\]$/);
-    if(pM){ const p=document.createElement('p'); p.className='story-para'; p.textContent=pM[1].trim(); body.appendChild(p); return; }
-    const iM = tok.match(/^\[IMAGE\]([\s\S]*?)\[\/IMAGE\]$/);
-    if(iM){ body.appendChild(makeImageBlock(iM[1].trim(), imgIdx++)); return; }
-    if(tok.replace(/\s/g,'')){ const p=document.createElement('p'); p.className='story-para'; p.textContent=tok; body.appendChild(p); }
+    tok=tok.trim(); if(!tok) return;
+    const pM=tok.match(/^\[PARA\]([\s\S]*?)\[\/PARA\]$/);
+    if(pM){const p=document.createElement('p');p.className='story-para';p.textContent=pM[1].trim();body.appendChild(p);return;}
+    const iM=tok.match(/^\[IMAGE\]([\s\S]*?)\[\/IMAGE\]$/);
+    if(iM){body.appendChild(makeImageBlock(imgIdx++));return;}
+    if(tok.replace(/\s/g,'')){const p=document.createElement('p');p.className='story-para';p.textContent=tok;body.appendChild(p);}
   });
-
   document.getElementById('story-footer').className='story-footer';
 }
 
-/* ── Main ── */
+// ── MAIN ──
 async function startStory(){
-  currentGenre = GENRES[Math.floor(Math.random()*GENRES.length)];
-
+  const key=getKey();
+  if(!key){ showSetup(); return; }
+  currentGenre=GENRES[Math.floor(Math.random()*GENRES.length)];
   document.getElementById('home').style.display='none';
   document.getElementById('story-screen').style.display='none';
   document.getElementById('loading').style.display='flex';
   startSparkles();
-
-  let msgIdx=0;
-  const updMsg=()=>{
-    const [t,s]=LOADING_MSGS[msgIdx%LOADING_MSGS.length];
-    document.getElementById('loading-title').textContent=t;
-    document.getElementById('loading-sub').textContent=s;
-    msgIdx++;
-  };
-  updMsg();
-  loadingInterval=setInterval(updMsg,2800);
+  let mi=0;
+  const upd=()=>{const[t,s]=LOADING_MSGS[mi%LOADING_MSGS.length];document.getElementById('loading-title').textContent=t;document.getElementById('loading-sub').textContent=s;mi++;};
+  upd(); loadingInterval=setInterval(upd,2800);
 
   const storyPrompt=`Write a children's bedtime ${currentGenre.label} story for ages 6-12.
 
@@ -352,39 +308,39 @@ Use ONLY these exact tags — no markdown, no extra text:
 
 [TITLE]Story Title Here[/TITLE]
 
-[PARA]Opening paragraph (about 80 words). Set the scene and introduce the hero.[/PARA]
+[PARA]Opening paragraph (~80 words). Set the scene and introduce the hero.[/PARA]
 
-[IMAGE]Describe the opening scene visually for an illustrator in 20 words.[/IMAGE]
+[IMAGE]scene description[/IMAGE]
 
-[PARA]Second paragraph (80 words). The adventure begins.[/PARA]
+[PARA]Second paragraph (~80 words). The adventure begins.[/PARA]
 
-[PARA]Third paragraph (80 words). The exciting middle — challenge or mystery.[/PARA]
+[PARA]Third paragraph (~80 words). The exciting middle — challenge or mystery.[/PARA]
 
-[IMAGE]Describe the exciting middle scene visually for an illustrator in 20 words.[/IMAGE]
+[IMAGE]scene description[/IMAGE]
 
-[PARA]Fourth paragraph (80 words). The hero solves the problem.[/PARA]
+[PARA]Fourth paragraph (~80 words). The hero solves the problem.[/PARA]
 
-[PARA]Fifth paragraph (80 words). Peaceful, happy, sleepy ending.[/PARA]
+[PARA]Fifth paragraph (~80 words). Peaceful, happy, sleepy ending.[/PARA]
 
-[IMAGE]Describe the calm ending scene visually for an illustrator in 20 words.[/IMAGE]
+[IMAGE]scene description[/IMAGE]
 
-Rules: exciting but NOT violent. Ending must be calm and sleep-inducing. No bullet points inside tags.`;
+Rules: exciting but NOT violent. Ending must be calm and sleep-inducing.`;
 
   try{
     const res=await fetch("https://api.anthropic.com/v1/messages",{
       method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:2000,
-        messages:[{role:"user",content:storyPrompt}]
-      })
+      headers:{
+        "Content-Type":"application/json",
+        "x-api-key": key,
+        "anthropic-version":"2023-06-01",
+        "anthropic-dangerous-allow-browser":"true"
+      },
+      body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:2000,messages:[{role:"user",content:storyPrompt}]})
     });
     const data=await res.json();
+    if(data.error){ throw new Error(data.error.message); }
     const text=(data.content||[]).map(b=>b.text||'').join('');
-
-    clearInterval(loadingInterval);
-    stopSparkles();
+    clearInterval(loadingInterval); stopSparkles();
     document.getElementById('loading').style.display='none';
     document.getElementById('genre-tag').textContent=currentGenre.emoji+' '+currentGenre.label;
     document.getElementById('story-title').textContent='✨ Loading…';
@@ -392,15 +348,13 @@ Rules: exciting but NOT violent. Ending must be calm and sleep-inducing. No bull
     document.getElementById('story-screen').style.display='block';
     window.scrollTo(0,0);
     parseAndRender(text);
-
   }catch(err){
-    clearInterval(loadingInterval);
-    stopSparkles();
+    clearInterval(loadingInterval); stopSparkles();
     document.getElementById('loading').style.display='none';
     document.getElementById('story-screen').style.display='block';
     document.getElementById('genre-tag').textContent='⚠️ Oops';
     document.getElementById('story-title').textContent='Try again!';
-    document.getElementById('story-body').innerHTML='<p class="story-para">The story owl hit a snag! Tap the button below 🦉</p>';
+    document.getElementById('story-body').innerHTML='<p class="story-para">'+err.message+'</p>';
     document.getElementById('story-footer').className='story-footer';
     console.error(err);
   }

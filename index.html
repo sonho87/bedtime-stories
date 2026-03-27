@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>✨ Tonight's Story</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap');
+  :root{--night:#0b0f2e;--card:#161d4a;--gold:#f5c842;--soft:#a8b4ff;--text:#e8eaff;--muted:#7a84c0;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{min-height:100vh;background:var(--night);font-family:'Nunito',sans-serif;color:var(--text);overflow-x:hidden;}
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:0;background:
+    radial-gradient(1px 1px at 10% 15%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 40%,#fff 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 8%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 25%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 70% 12%,#fff 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 35%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 15% 65%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 30% 80%,#fff 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 55%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 90% 85%,#fff 0%,transparent 100%),
+    radial-gradient(1px 1px at 5% 90%,#fff 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 75%,#fff 0%,transparent 100%);}
+  .moon{position:fixed;top:5%;right:8%;font-size:3.5rem;filter:drop-shadow(0 0 20px rgba(245,200,66,0.4));animation:float 6s ease-in-out infinite;z-index:1;pointer-events:none;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+  /* HOME */
+  #home{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+  .home-owl{font-size:5rem;margin-bottom:1rem;animation:float 5s ease-in-out infinite;}
+  .home-title{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#f5c842,#ff9de2,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:0.5rem;}
+  .home-sub{font-size:1.1rem;color:var(--muted);margin-bottom:3rem;}
+  .big-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:50%;width:200px;height:200px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;color:#0b0f2e;box-shadow:0 0 40px rgba(245,200,66,0.4),0 0 80px rgba(168,180,255,0.2);transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+  .big-btn:hover{transform:scale(1.06);box-shadow:0 0 60px rgba(245,200,66,0.6);}
+  .big-btn:active{transform:scale(0.97);}
+  .big-btn .btn-icon{font-size:2.5rem;}
+  .genre-badges{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-top:2.5rem;max-width:400px;}
+  .badge{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:0.3rem 0.9rem;font-size:0.8rem;color:var(--muted);}
+
+  /* STORY SCREEN */
+  #story-screen{display:none;position:relative;z-index:2;min-height:100vh;padding:1.5rem 1rem 5rem;}
+  .story-header{text-align:center;margin-bottom:1.5rem;}
+  .genre-tag{display:inline-block;background:linear-gradient(135deg,#f5c842,#ff9de2);color:#0b0f2e;font-weight:900;font-size:0.85rem;padding:0.3rem 1rem;border-radius:999px;margin-bottom:0.8rem;letter-spacing:0.05em;text-transform:uppercase;}
+  .story-title{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;line-height:1.2;background:linear-gradient(135deg,#f5c842,#a8b4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.4rem;min-height:2rem;}
+  .story-meta{color:var(--muted);font-size:0.85rem;}
+  .story-card{max-width:700px;margin:0 auto;background:var(--card);border:1px solid rgba(168,180,255,0.12);border-radius:24px;padding:clamp(1.2rem,4vw,2rem);box-shadow:0 8px 40px rgba(0,0,0,0.4);}
+
+  /* PARAGRAPHS */
+  .story-para{font-family:'Crimson Pro',serif;font-size:clamp(1.05rem,2.5vw,1.2rem);line-height:1.9;color:#d8dcff;margin-bottom:1.2rem;}
+  .cursor{display:inline-block;width:2px;height:1.1em;background:var(--gold);animation:blink-cursor 0.7s step-end infinite;vertical-align:text-bottom;margin-left:2px;}
+  @keyframes blink-cursor{0%,100%{opacity:1;}50%{opacity:0;}}
+
+  /* SCENE IMAGE */
+  .scene-wrap{margin:1rem 0 1.5rem;border-radius:16px;overflow:hidden;border:2px solid rgba(168,180,255,0.2);box-shadow:0 4px 30px rgba(0,0,0,0.5);background:#0d1235;position:relative;}
+  .scene-wrap img{width:100%;display:block;border-radius:14px;}
+  .scene-loading{height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:var(--muted);font-size:0.85rem;}
+  .scene-loading .pulse{font-size:1.8rem;animation:float 2s ease-in-out infinite;}
+
+  /* FOOTER */
+  .story-footer{max-width:700px;margin:1.5rem auto 0;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+  .new-story-btn{background:linear-gradient(135deg,#f5c842,#ff9de2 50%,#a8b4ff);border:none;border-radius:999px;padding:1rem 2.5rem;cursor:pointer;font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:#0b0f2e;box-shadow:0 0 30px rgba(245,200,66,0.3);transition:transform 0.2s;}
+  .new-story-btn:hover{transform:scale(1.04);}
+  .back-link{color:var(--muted);font-size:0.9rem;cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Nunito',sans-serif;}
+  .goodnight{text-align:center;color:var(--muted);font-size:0.85rem;}
+  .footer-hidden{display:none;}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="moon">🌕</div>
+
+<!-- HOME -->
+<div id="home">
+  <div class="home-owl">🦉</div>
+  <h1 class="home-title">Tonight's Story</h1>
+  <p class="home-sub">A brand new illustrated story, just for you ✨</p>
+  <button class="big-btn" onclick="startStory()">
+    <span class="btn-icon">📖</span>
+    <span>Tap for<br/>Tonight's Story!</span>
+  </button>
+  <div class="genre-badges">
+    <span class="badge">⚔️ Action</span>
+    <span class="badge">🧙 Fantasy</span>
+    <span class="badge">🗺️ Adventure</span>
+    <span class="badge">🔦 Thriller</span>
+    <span class="badge">🚀 Sci-Fi</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<div id="story-screen">
+  <div class="story-header">
+    <div class="genre-tag" id="genre-tag">✨ Loading...</div>
+    <h2 class="story-title" id="story-title"> </h2>
+    <p class="story-meta">📖 ~5 min read &nbsp;·&nbsp; 🎨 Illustrated &nbsp;·&nbsp; 🌙 Bedtime</p>
+  </div>
+  <div class="story-card">
+    <div id="story-body"></div>
+  </div>
+  <div class="story-footer footer-hidden" id="story-footer">
+    <button class="new-story-btn" onclick="startStory()">✨ Give me another story!</button>
+    <button class="back-link" onclick="goHome()">← Back to home</button>
+    <p class="goodnight">🌟 Sweet dreams! 🌟</p>
+  </div>
+</div>
+
+<script>
+const GENRES = [
+  {label:"Action",         emoji:"⚔️", imgStyle:"epic cinematic action scene, dramatic lighting, heroic"},
+  {label:"Fantasy & Magic",emoji:"🧙", imgStyle:"magical enchanted world, glowing spell effects, painterly fantasy art"},
+  {label:"Adventure",      emoji:"🗺️",imgStyle:"lush exploration landscape, warm golden light, adventurous"},
+  {label:"Thriller",       emoji:"🔦", imgStyle:"moody atmospheric mystery, dramatic shadows, suspenseful"},
+  {label:"Sci-Fi",         emoji:"🚀", imgStyle:"futuristic neon space scene, holographic technology, sci-fi"}
+];
+
+let currentGenre = null;
+
+function goHome(){
+  document.getElementById('home').style.display='flex';
+  document.getElementById('story-screen').style.display='none';
+}
+
+function imgUrl(prompt){
+  const p = encodeURIComponent(`children's book illustration, ${currentGenre.imgStyle}, ${prompt}, vibrant colors, whimsical, safe for kids, no text, no words`);
+  return `https://image.pollinations.ai/prompt/${p}?width=680&height=360&seed=${Math.floor(Math.random()*99999)}&nologo=true`;
+}
+
+function makeImageBlock(prompt){
+  const wrap = document.createElement('div');
+  wrap.className = 'scene-wrap';
+  wrap.innerHTML = `<div class="scene-loading"><div class="pulse">🎨</div><div>Painting this scene…</div></div>`;
+  const url = imgUrl(prompt);
+  const img = new Image();
+  img.onload = ()=>{ wrap.innerHTML=''; wrap.appendChild(img); };
+  img.onerror = ()=>{ wrap.innerHTML=`<div class="scene-loading"><div>🖼️ Imagine the scene here!</div></div>`; };
+  img.src = url;
+  img.alt = 'Story scene';
+  img.style.width='100%';
+  return wrap;
+}
+
+async function startStory(){
+  currentGenre = GENRES[Math.floor(Math.random()*GENRES.length)];
+
+  // Switch to story screen immediately
+  document.getElementById('home').style.display='none';
+  document.getElementById('story-screen').style.display='block';
+  document.getElementById('story-footer').className='story-footer footer-hidden';
+  document.getElementById('genre-tag').textContent = currentGenre.emoji+' '+currentGenre.label;
+  document.getElementById('story-title').textContent = '✨ Writing your story…';
+  document.getElementById('story-body').innerHTML='';
+  window.scrollTo(0,0);
+
+  const prompt = `Write a children's bedtime ${currentGenre.label} story for ages 6-12.
+
+Output format — plain text only, no JSON, no markdown. Use these exact separator tokens:
+
+[TITLE]The Story Title Here[/TITLE]
+
+[PARA]First paragraph of story here.[/PARA]
+
+[IMAGE]vivid detailed image generation prompt describing the scene visually[/IMAGE]
+
+[PARA]Second paragraph.[/PARA]
+
+[PARA]Third paragraph.[/PARA]
+
+[IMAGE]second scene image prompt[/IMAGE]
+
+[PARA]Fourth paragraph.[/PARA]
+
+[PARA]Fifth paragraph with peaceful ending.[/PARA]
+
+[IMAGE]third scene image prompt[/IMAGE]
+
+Rules:
+- 5 paragraphs total, ~100 words each
+- 3 image prompts, very specific and visual
+- Age-appropriate, exciting but not violent
+- Peaceful calming ending good for sleep
+- Image prompts must describe characters, setting, action, mood, colors in detail`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:2500,
+        stream:false,
+        messages:[{role:"user", content:prompt}]
+      })
+    });
+
+    const data = await res.json();
+    const text = (data.content||[]).map(b=>b.text||'').join('');
+    parseAndRender(text);
+
+  } catch(err){
+    document.getElementById('story-title').textContent='Oops! Try again 🦉';
+    document.getElementById('story-body').innerHTML='<p class="story-para">The story owl hit a snag. Tap the button below!</p>';
+    document.getElementById('story-footer').className='story-footer';
+    console.error(err);
+  }
+}
+
+function parseAndRender(text){
+  const body = document.getElementById('story-body');
+  body.innerHTML='';
+
+  // Extract title
+  const titleM = text.match(/\[TITLE\]([\s\S]*?)\[\/TITLE\]/);
+  if(titleM) document.getElementById('story-title').textContent = titleM[1].trim();
+  else document.getElementById('story-title').textContent = currentGenre.emoji+' '+currentGenre.label+' Story';
+
+  // Tokenise the rest
+  const rest = text.replace(/\[TITLE\][\s\S]*?\[\/TITLE\]/,'');
+  const tokens = rest.split(/(\[PARA\][\s\S]*?\[\/PARA\]|\[IMAGE\][\s\S]*?\[\/IMAGE\])/g);
+
+  tokens.forEach(tok=>{
+    tok = tok.trim();
+    if(!tok) return;
+
+    const paraM = tok.match(/^\[PARA\]([\s\S]*?)\[\/PARA\]$/);
+    if(paraM){
+      const p = document.createElement('p');
+      p.className='story-para';
+      p.textContent = paraM[1].trim();
+      body.appendChild(p);
+      return;
+    }
+
+    const imgM = tok.match(/^\[IMAGE\]([\s\S]*?)\[\/IMAGE\]$/);
+    if(imgM){
+      body.appendChild(makeImageBlock(imgM[1].trim()));
+      return;
+    }
+
+    // Fallback: plain text chunk
+    if(tok.replace(/\s/g,'')){
+      const p = document.createElement('p');
+      p.className='story-para';
+      p.textContent=tok;
+      body.appendChild(p);
+    }
+  });
+
+  document.getElementById('story-footer').className='story-footer';
+}
+</script>
+</body>
+</html>
